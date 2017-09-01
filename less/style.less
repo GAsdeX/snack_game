@@ -1,0 +1,71 @@
+// out: ../css/style.css, sourcemap: true, compress: true
+
+
+//prepared colors sheet
+@blue: #2980b9;
+@grey: #27ae60;
+@orange: #e67e22;
+@cloud: #ecf0f1;
+@danger: #e74c3c;
+
+
+html, body, h1, h2, h3 , h4, h5 h6, p , a, ul, li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+	font-family: Arial;
+}
+
+
+.wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: block;
+
+	&:after {
+		content: "";
+		display: table;
+		clear: bouth;
+	}
+}
+
+//site content goes here
+.site-content {
+	.game-section {
+		margin: 100px auto;
+		width: 350px;
+
+		.game-field {
+			position: relative;
+			height: 300px;
+			width: 300px;
+			border: 1px solid @grey;
+			margin: 0 auto;
+
+			.food {
+
+			}
+			.snack {
+				display: block;
+				li {
+					margin: 2px;
+					display: block;
+					position: absolute;
+				}
+			}
+		}
+		.game-params {
+			.param-group {
+				display: table;
+
+				.param {
+					display: table-cell;
+				}
+				.value {
+					display: table-cell;
+				}
+			}
+		}
+	}
+}
