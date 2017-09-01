@@ -1,5 +1,13 @@
-'use strict';
+
+// cell size = 7px per 7px
 const FIELD_SIZE = 50;
+
+// Generate field
+
+var gameField = document.querySelector('.site-content .game-section .game-field');
+gameField.style.width = FIELD_SIZE*7+'px'
+gameField.style.height = FIELD_SIZE*7+'px'
+
 
 // window.onload = startGame();
 window.addEventListener('keydown', changeSnackDirection,  false);
@@ -11,7 +19,9 @@ class Snack {
 	constructor() {
 		this.snackLength = 1;
 		this.snackDeath = false;
+		this.startGane = false;
 		this.snackDirection = 'up'
+		this.snackHeadCoordinate = FIELD_SIZE
 	}
 
 	getInitPosition() {
@@ -49,5 +59,20 @@ function changeSnackDirection (e) {
 			snack.snackDirection = 'down';
 			console.log(snack.snackDirection);
 		}
+	}
+}
+
+function snackMotionController(e) {
+	if (e == 'up') {
+
+	}
+	if (e == 'right') {
+
+	}
+	if (e == 'down') {
+
+	}
+	if (e == 'left') {
+
 	}
 }
