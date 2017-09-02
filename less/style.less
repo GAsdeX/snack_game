@@ -54,6 +54,34 @@ html, body, h1, h2, h3 , h4, h5 h6, p , a, ul, li{
 				position: absolute;
 				background: @grey;
 			}
+			#game-over {
+				position: absolute;
+				transform: translate(-50%, -50%);
+				font-size: 30px;
+				color: black;
+				top: 50%;
+				left: 50%;
+				display: block;
+				white-space: nowrap;
+				visibility: hidden;
+
+				&.active {
+					visibility: visible;
+				}
+			}
+			#start-game {
+				position: absolute;
+				transform: translate(-50%, -50%);
+				font-size: 30px;
+				color: black;
+				top: 50%;
+				left: 50%;
+				visibility: hidden;
+
+				&.active {
+
+				}
+			}
 			.snack {
 				display: block;
 				li {
@@ -67,6 +95,8 @@ html, body, h1, h2, h3 , h4, h5 h6, p , a, ul, li{
 			}
 		}
 		.game-params {
+			margin-top: 20px;
+
 			.param-group {
 				display: table;
 
