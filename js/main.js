@@ -4,14 +4,28 @@ const FIELD_SIZE = 50;
 const CELL_SIZE = 7;
 var SPEED = 400;
 var snackMoton;
-var GAME = function (_SPEED=SPEED) {
-	var snackMoton = setInterval(function(){
-		snackTailController(snack.snackDirection);
-		if (snack.snackDeath) {
-			clearInterval(snackMoton);
-			document.getElementById('game-over').classList.add('active')
-		}
-	}, _SPEED);
+
+
+var gameController = function (_SPEED=SPEED) {
+	clearInterval(snackMoton);
+	if (_SPEED == 300) {
+			snackMoton = setInterval(function(){
+			snackTailController(snack.snackDirection);
+			if (snack.snackDeath) {
+				clearInterval(snackMoton);
+				document.getElementById('game-over').classList.add('active')
+			}
+		}, _SPEED);
+	} else {
+			snackMoton = setInterval(function(){
+			snackTailController(snack.snackDirection);
+			console.log(_SPEED);
+			if (snack.snackDeath) {
+				clearInterval(snackMoton);
+				document.getElementById('game-over').classList.add('active')
+			}
+		}, _SPEED);
+	}
 };
 
 var getLiBlock = document.getElementById('snack').getElementsByTagName("li");
@@ -53,7 +67,7 @@ function startGame() {
 
 	getLiBlock[0];
 	tail.appendChild(tailCell);
-	GAME();
+	gameController();
 }
 
 // 37 -left ;38 - up ;39 - right ;40 - down
@@ -134,7 +148,6 @@ function snackEatController () {
 	let tail = document.getElementById('snack');
 	let tailCell = document.createElement("li");
 	snack.score++;
-	SPEED = SPEED+ snack.score;
 	document.getElementById('score').innerHTML = snack.score;
 	tail.appendChild(tailCell);
 	snack.snackTailCoordinate.push(snack.snackTailCoordinate[snack.snackTailCoordinate.length-1]);
@@ -142,9 +155,7 @@ function snackEatController () {
 	getLiBlock[document.querySelector('#snack li').childElementCount].style.top = snack.snackTailCoordinate[snack.snackTailCoordinate.length-1][1]+ 'px';
 	getLiBlock[document.querySelector('#snack li').childElementCount].style.left = snack.snackTailCoordinate[snack.snackTailCoordinate.length-1][0]+ 'px';
 	snack.getFoodPosition();
-	clearInterval(GAME);
-	clearInterval(snackMoton);
-	clearInterval(snackMoton);
+	gameController(SPEED - (10*snack.score) )
 	// startInterval(1000);
 	// GAME(1000);
 }
@@ -154,13 +165,11 @@ function isSnackDeath() {
 		snack.snackTailCoordinate[0][0] < 0 ||
 		 snack.snackTailCoordinate[0][0] > 49 * CELL_SIZE ) {
 		snack.snackDeath = true;
-		clearInterval(snackMoton);
 	}
-	for (var i = 1; i < snack.snackTailCoordinate.length; i++) {
+	for (var i = 2; i < snack.snackTailCoordinate.length; i++) {
 		if (snack.snackTailCoordinate[0][0] == snack.snackTailCoordinate[i][0] &&
 			snack.snackTailCoordinate[0][1] == snack.snackTailCoordinate[i][1] ) {
 			snack.snackDeath = true;
-			clearInterval(snackMoton);
 		}
 	}
 }
@@ -168,4 +177,4 @@ function isSnackDeath() {
 snack.getFoodPosition();
 
 // testing
-snackEatController();
+// snackEatController();
